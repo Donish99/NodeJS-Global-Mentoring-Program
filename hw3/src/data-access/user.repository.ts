@@ -48,14 +48,3 @@ class UserRepository {
 }
 
 export default new UserRepository();
-async (loginSubstring: string, limit: number): Promise<User[]> => {
-  const users = await User.findAll({
-    where: {
-      login: { [Op.like]: `%${loginSubstring}%` },
-      isDeleted: false,
-    },
-    order: [["login", "ASC"]],
-    limit: limit,
-  });
-  return users;
-};

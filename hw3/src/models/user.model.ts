@@ -1,5 +1,5 @@
-import { Model, DataTypes } from 'sequelize';
-import sequelize from '../data-access/sequelize';
+import { Model, DataTypes } from "sequelize";
+import sequelize from "../data-access/sequelize";
 
 export interface UserAttributes {
   id: number;
@@ -48,7 +48,7 @@ User.init(
   },
   {
     sequelize,
-    modelName: 'User',
+    modelName: "User",
   }
 );
 
