@@ -1,5 +1,5 @@
-import { Model, DataTypes } from 'sequelize';
-import sequelize from '../data-access/sequelize';
+import { Model, DataTypes } from "sequelize";
+import sequelize from "./sequelize";
 
 export interface UserAttributes {
   id: number;
@@ -11,7 +11,6 @@ export interface UserAttributes {
 
 class User extends Model<UserAttributes> implements UserAttributes {
   public id!: number;
-  public email!: string;
   public password!: string;
   public login!: string;
   public age!: number;
@@ -48,8 +47,10 @@ User.init(
   },
   {
     sequelize,
-    modelName: 'User',
+    modelName: "User",
   }
 );
+
+User.sync();
 
 export default User;

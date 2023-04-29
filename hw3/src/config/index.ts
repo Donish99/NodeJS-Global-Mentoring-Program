@@ -1,8 +1,15 @@
-import dotenv from 'dotenv';
-import { Sequelize } from "sequelize";
+import dotenv from "dotenv";
+import winston from "winston";
+
+export const logger = winston.createLogger({
+  transports: [
+    new winston.transports.Console(),
+    new winston.transports.File({ filename: "error.log" }),
+  ],
+});
 
 // Set the NODE_ENV to 'development' by default
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+process.env.NODE_ENV = process.env.NODE_ENV || "development";
 
 const envFound = dotenv.config();
 if (envFound.error) {
@@ -17,11 +24,6 @@ export default {
     name: process.env.DB_NAME!,
     user: process.env.DB_USER!,
     password: process.env.DB_PASSWORD!,
-  },
-  logs: {
-    level: process.env.LOG_LEVEL || 'silly',
-  },
-  api: {
-    prefix: '/api',
+    url: process.env.DB_URL!,
   },
 };
