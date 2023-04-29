@@ -1,12 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import winston from "winston";
-
-const logger = winston.createLogger({
-  transports: [
-    new winston.transports.Console(),
-    new winston.transports.File({ filename: "error.log" }),
-  ],
-});
+import { logger } from "../config";
 
 const errorLog = (
   err: Error,

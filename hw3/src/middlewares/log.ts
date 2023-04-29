@@ -1,3 +1,4 @@
+import { logger } from "../config";
 import { Request, Response, NextFunction } from "express";
 
 const logMiddleware = (
@@ -9,7 +10,7 @@ const logMiddleware = (
   const methodName = req.method;
   const args = req.body;
 
-  console.log(
+  logger.info(
     `Service ${serviceName}: ${methodName} called with arguments:`,
     args
   );

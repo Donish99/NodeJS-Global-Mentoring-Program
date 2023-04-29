@@ -1,4 +1,12 @@
 import dotenv from "dotenv";
+import winston from "winston";
+
+export const logger = winston.createLogger({
+  transports: [
+    new winston.transports.Console(),
+    new winston.transports.File({ filename: "error.log" }),
+  ],
+});
 
 // Set the NODE_ENV to 'development' by default
 process.env.NODE_ENV = process.env.NODE_ENV || "development";

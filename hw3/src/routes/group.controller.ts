@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import GroupService from "../services/group.service";
 import Joi from "joi";
+import { logger } from "../config";
 
 const groupSchema = Joi.object({
   name: Joi.string().required(),
@@ -18,7 +19,12 @@ class GroupController {
       const group = await GroupService.createGroup(req.body);
       res.status(201).json(group);
     } catch (error: any) {
-      res.status(500).json({ message: error.message });
+      logger.error(`Error in GroupController.createGroup: ${error.message}`, {
+        args: [req.params.id],
+        error,
+      });
+
+      res.status(500).json({ error: "Internal Server Error" });
     }
   }
 
@@ -37,7 +43,12 @@ class GroupController {
         res.status(404).json({ message: `Group with id ${id} not found` });
       }
     } catch (error: any) {
-      res.status(500).json({ message: error.message });
+      logger.error(`Error in GroupController.updateGroup: ${error.message}`, {
+        args: [req.params.id],
+        error,
+      });
+
+      res.status(500).json({ error: "Internal Server Error" });
     }
   }
 
@@ -51,7 +62,12 @@ class GroupController {
         res.status(404).json({ message: `Group with id ${id} not found` });
       }
     } catch (error: any) {
-      res.status(500).json({ message: error.message });
+      logger.error(`Error in GroupController.getGroupById: ${error.message}`, {
+        args: [req.params.id],
+        error,
+      });
+
+      res.status(500).json({ error: "Internal Server Error" });
     }
   }
 
@@ -65,7 +81,12 @@ class GroupController {
         res.status(404).json({ message: `Group with id ${id} not found` });
       }
     } catch (error: any) {
-      res.status(500).json({ message: error.message });
+      logger.error(`Error in GroupController.deleteGroup: ${error.message}`, {
+        args: [req.params.id],
+        error,
+      });
+
+      res.status(500).json({ error: "Internal Server Error" });
     }
   }
 }
