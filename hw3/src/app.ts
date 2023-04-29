@@ -3,11 +3,13 @@ import config from "./config";
 import userRouter from "./routes/user.route";
 import groupRouter from "./routes/group.route";
 import logMiddleware from "./middlewares/log";
+import errorLog from "./middlewares/error.log";
 
 async function startServer() {
   const app = express();
   app.use(express.json());
   app.use(logMiddleware);
+  app.use(errorLog);
 
   app.get("/", (req, res) => res.sendStatus(200));
 
