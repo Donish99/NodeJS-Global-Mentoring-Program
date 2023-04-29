@@ -1,4 +1,3 @@
-import { Op } from "sequelize";
 import Group, { GroupAttributes } from "../models/group.model";
 
 class GroupRepository {

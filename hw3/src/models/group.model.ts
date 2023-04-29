@@ -1,5 +1,5 @@
 import { Model, DataTypes } from "sequelize";
-import sequelize from "../data-access/sequelize";
+import sequelize from "./sequelize";
 
 type Permission = "READ" | "WRITE" | "DELETE" | "SHARE" | "UPLOAD_FILES";
 
@@ -34,5 +34,7 @@ Group.init(
   },
   { sequelize, modelName: "Group" }
 );
+
+Group.sync();
 
 export default Group;
