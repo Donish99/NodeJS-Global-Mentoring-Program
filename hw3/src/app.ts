@@ -2,12 +2,15 @@ import express from "express";
 import config from "./config";
 import userRouter from "./routes/user.route";
 import groupRouter from "./routes/group.route";
-import sequelize from "./models/sequelize";
+import logMiddleware from "./middlewares/log";
 
 async function startServer() {
   const app = express();
   app.use(express.json());
+  app.use(logMiddleware);
+
   app.get("/", (req, res) => res.sendStatus(200));
+
   app.use("/users", userRouter);
   app.use("/groups", groupRouter);
 
