@@ -1,5 +1,5 @@
 import { Model, DataTypes } from "sequelize";
-import { generateHash } from "src/utils";
+import { generateHash } from "../utils";
 import sequelize from "./sequelize";
 
 export interface UserAttributes {
