@@ -1,3 +1,4 @@
+import { checkHash, generateHash } from "../utils";
 import UserRepository from "../data-access/user.repository";
 import User, { UserAttributes } from "../models/user.model";
 
@@ -23,6 +24,10 @@ class UsersService {
 
   async deleteUser(id: number): Promise<number> {
     return UserRepository.delete(id);
+  }
+
+  async findByLogin(login: string): Promise<User | null> {
+    return UserRepository.findByLogin(login);
   }
 }
 

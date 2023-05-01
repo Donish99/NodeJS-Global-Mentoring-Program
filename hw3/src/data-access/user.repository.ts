@@ -22,6 +22,9 @@ class UserRepository {
   async findById(id: number): Promise<User | null> {
     return User.findByPk(id);
   }
+  async findByLogin(login: string): Promise<User | null> {
+    return User.findOne({ where: { login } });
+  }
 
   async create(user: UserAttributes): Promise<User> {
     return User.create(user);
@@ -48,14 +51,3 @@ class UserRepository {
 }
 
 export default new UserRepository();
-async (loginSubstring: string, limit: number): Promise<User[]> => {
-  const users = await User.findAll({
-    where: {
-      login: { [Op.like]: `%${loginSubstring}%` },
-      isDeleted: false,
-    },
-    order: [["login", "ASC"]],
-    limit: limit,
-  });
-  return users;
-};
