@@ -2,18 +2,16 @@
   "compilerOptions": {
     "target": "es2019",
     "module": "commonjs",
-    "lib": ["es2019"],
+    "lib": [
+      "es2019"
+    ],
     "outDir": "./build",
     "rootDir": "./src",
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "sourceMap": true,
     "strict": true,
-    "moduleResolution": "node",
+    "moduleResolution": "nodenext",
     "baseUrl": "./",
-    "paths": {
-      // "*": ["node_modules/*", "src/types/*"],
-      "@/*": ["./src/*"]
-    }
   }
 }
