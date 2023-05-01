@@ -22,8 +22,8 @@ class UserRepository {
   async findById(id: number): Promise<User | null> {
     return User.findByPk(id);
   }
-  async findByEmail(email: string): Promise<User | null> {
-    return User.findOne({ where: { email } });
+  async findByLogin(login: string): Promise<User | null> {
+    return User.findOne({ where: { login } });
   }
 
   async create(user: UserAttributes): Promise<User> {

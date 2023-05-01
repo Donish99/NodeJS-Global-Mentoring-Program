@@ -26,8 +26,8 @@ class UsersService {
     return UserRepository.delete(id);
   }
 
-  async findByEmail(email: string): Promise<User | null> {
-    return UserRepository.findByEmail(email);
+  async findByLogin(login: string): Promise<User | null> {
+    return UserRepository.findByLogin(login);
   }
 }
 

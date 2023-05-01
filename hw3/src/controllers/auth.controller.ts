@@ -2,7 +2,7 @@
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import config, { logger } from "../config";
+import config, { logger } from "../config/index";
 import UserService from "../services/user.service";
 import Joi from "joi";
 import { checkHash } from "src/utils";
@@ -21,8 +21,8 @@ class AuthController {
         res.status(400).send(error.details[0].message);
         return;
       }
-      const { email, password } = req.body;
-      const user = await UserService.findByEmail(email);
+      const { login, password } = req.body;
+      const user = await UserService.findByLogin(login);
       if (!user) return res.status(404).json({ message: "User not found" });
 
       const passwordMatch = checkHash(user.password, password);
