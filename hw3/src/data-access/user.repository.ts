@@ -22,6 +22,9 @@ class UserRepository {
   async findById(id: number): Promise<User | null> {
     return User.findByPk(id);
   }
+  async findByEmail(email: string): Promise<User | null> {
+    return User.findOne({ where: { email } });
+  }
 
   async create(user: UserAttributes): Promise<User> {
     return User.create(user);

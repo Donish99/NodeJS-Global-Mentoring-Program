@@ -4,17 +4,20 @@ import userRouter from "./routes/user.route";
 import groupRouter from "./routes/group.route";
 import logMiddleware from "./middlewares/log";
 import errorLog from "./middlewares/error.log";
+import checkAuth from "./middlewares/auth";
+import cors from "cors";
 
 async function startServer() {
   const app = express();
+  app.use(cors());
   app.use(express.json());
   app.use(logMiddleware);
   app.use(errorLog);
 
   app.get("/", (req, res) => res.sendStatus(200));
 
-  app.use("/users", userRouter);
-  app.use("/groups", groupRouter);
+  app.use("/users", checkAuth, userRouter);
+  app.use("/groups", checkAuth, groupRouter);
 
   app
     .listen(config.port, () => {

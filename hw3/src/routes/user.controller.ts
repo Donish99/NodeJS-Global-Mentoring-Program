@@ -5,9 +5,10 @@ import { logger } from "../config/index";
 
 const userSchema = Joi.object({
   name: Joi.string().required(),
-  email: Joi.string().email().required(),
+  login: Joi.string().required(),
   age: Joi.number().integer().min(18).max(120).required(),
   address: Joi.string().required(),
+  password: Joi.string().required().min(8),
 });
 
 class UsersController {

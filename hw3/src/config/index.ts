@@ -26,4 +26,6 @@ export default {
     password: process.env.DB_PASSWORD!,
     url: process.env.DB_URL!,
   },
+  saltRounds: 12,
+  jwtSecret: process.env.JWT_SECRET!,
 };

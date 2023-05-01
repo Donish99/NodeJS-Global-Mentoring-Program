@@ -1,4 +1,5 @@
 import { Model, DataTypes } from "sequelize";
+import { generateHash } from "src/utils";
 import sequelize from "./sequelize";
 
 export interface UserAttributes {
@@ -30,6 +31,7 @@ User.init(
     login: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
     password: {
       type: DataTypes.STRING,
@@ -48,6 +50,12 @@ User.init(
   {
     sequelize,
     modelName: "User",
+    hooks: {
+      beforeCreate: async (user: UserAttributes) => {
+        const hashedPassword = await generateHash(user.password);
+        user.password = hashedPassword;
+      },
+    },
   }
 );
 
